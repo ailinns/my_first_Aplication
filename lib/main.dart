@@ -13,19 +13,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // เมธอด build() ส่งคืนโครงสร้างต้นไม้วิดเจ็ตสำหรับวิดเจ็ตนี้
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'My Awesome App',
+      debugShowCheckedModeBanner: false, // ซ่อนแบนเนอร์ debug
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 0, 255, 221),
-        ),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true, // ใช้ Material Design เวอร์ชันล่าสุด
       ),
-
-      home: const MyHomePage(),
+      home: const MyHomePage(), // วิดเจ็ตหน้าจอหลักของคุณ
     );
   }
 }
 
+// ตัวอย่างวิดเจ็ตที่ส่งคืนโดย property 'home' ของ MaterialApp
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
@@ -35,28 +34,29 @@ class MyHomePage extends StatelessWidget {
       // ให้โครงสร้างแอปพื้นฐาน
       appBar: AppBar(
         title: const Text('Home Page'),
-        backgroundColor: const Color.fromARGB(255, 104, 187, 255), // ปรับแต่งสี AppBar
+        backgroundColor: Colors.blue, // ปรับแต่งสี AppBar
       ),
       body: Center(
-        // จัดกึ่งกลาง Container
-        child: Container(      // กล่อง
-          padding: EdgeInsets.all(50.0),
-          width: 300.0,
-          height: 200.0,
-          //color: const Color.fromARGB(255, 255, 239, 191), // สีพื้นหลัง
+        // พื้นที่เนื้อหาหลัก center กับwidgetได้1ตัว
+        child: Container(
+          padding: EdgeInsets.all(10.0),
+          width: 500.0,
+          height: 300.0,
           decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 255, 233, 165),
-            borderRadius: BorderRadius.all(Radius.circular(20.0))
+            color: const Color.fromARGB(255, 148, 255, 246),
+            borderRadius: BorderRadius.horizontal(
+              left: Radius.circular(60.0),
+              right: Radius.elliptical(45, 60),
+            ),
           ),
-          child: const Text('Inside container',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(221, 255, 16, 128),
+          child: Center(
+            child: Image.asset(
+              'assets/image/kein1.jpg',
+              width: 150,
+              // height: 100, // สามารถละเว้นมิติหนึ่งเพื่อรักษาอัตราส่วนภาพ
+              fit: BoxFit.contain, // ปรับขนาดให้พอดีภายในกล่องโดยไม่ตัดภาพ
+            ),
           ),
-          ),
-          // Child และ Padding จะมาตรงนี้
         ),
       ),
       floatingActionButton: FloatingActionButton(
